@@ -8,9 +8,9 @@ public class App
     public static void main( String[] args )
     {
 
-        code(false);
+       // code(false);
 
-       //code(true);
+       code(true);
 
         System.out.println("ALL DONE ");
         bankAccount.show();

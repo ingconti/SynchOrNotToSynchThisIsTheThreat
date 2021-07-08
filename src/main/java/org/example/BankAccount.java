@@ -25,13 +25,15 @@ public class BankAccount {
 
      public void granularInc(){
          synchronized(amount) {
-             amount++;
+         //    synchronized(this) {
+             amount+=1;
          }
     }
 
      public void granularDec(){
          synchronized(amount) {
-             amount--;
+         //synchronized(this) {
+             amount-=1;
          }
     }
 
