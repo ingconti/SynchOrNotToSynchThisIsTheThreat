@@ -43,6 +43,6 @@ public class BankAccount {
     }
 
     public void show(){
-        System.out.println("\n" + amount);
+        System.out.println("final amount \n" + amount);
     }
 }
