@@ -1,9 +1,6 @@
 package org.example;
 
-/**
- * Hello world!
- *
- */
+
 public class App 
 {
     static BankAccount bankAccount = new BankAccount();
@@ -11,27 +8,21 @@ public class App
     public static void main( String[] args )
     {
 
-        long start = System.nanoTime();
-        code();
-        long finish = System.nanoTime();
-        long timeElapsed1 = finish - start;
+        code(false);
 
-        start = System.nanoTime();
-        //betterCode();
-        finish = System.nanoTime();
-        long timeElapsed2 = finish - start;
+       //code(true);
 
-        System.out.println("ALL DONE " + timeElapsed1 + " " + timeElapsed2);
+        System.out.println("ALL DONE ");
         bankAccount.show();
 
     }
 
-    public static void code( )
+    public static void code(Boolean moreGranularAccess )
     {
         System.out.println( "started code!" );
 
-        MyThread th1 = new MyThread("ONE", true, bankAccount);
-        MyThread th2 = new MyThread("TWO", false, bankAccount);
+        MyThread th1 = new MyThread("ONE", true, moreGranularAccess, bankAccount);
+        MyThread th2 = new MyThread("TWO", false, moreGranularAccess, bankAccount);
         th1.start();
         th2.start();
 

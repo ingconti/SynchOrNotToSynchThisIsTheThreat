@@ -9,11 +9,13 @@ public class MyThread extends Thread {
 
     private String name;
     private boolean UP;
+    private boolean moreGranularAccess;
     private BankAccount bankAccount;
 
-    public MyThread(String  name, Boolean UP, BankAccount bankAccount) {
+    public MyThread(String  name, Boolean UP, Boolean moreGranularAccess,  BankAccount bankAccount) {
         this.name = name;
         this.UP = UP;
+        this.moreGranularAccess = moreGranularAccess;
         this.bankAccount = bankAccount;
     }
 
@@ -21,16 +23,27 @@ public class MyThread extends Thread {
         System.out.println(name + " is running...");
         int count = 0;
 
+        long start = System.nanoTime();
+
         do {
             if (UP){
-                bankAccount.inc(1);
+                if (moreGranularAccess)
+                    bankAccount.granularInc();
+                else
+                    bankAccount.inc();
             }else{
-                bankAccount.dec(1);
+                if (moreGranularAccess)
+                    bankAccount.granularDec();
+                else
+                    bankAccount.dec();
             }
 
         } while (count++<maxIterations);
 
-        System.out.println(name + " has done!");
+        long finish = System.nanoTime();
+        long timeElapsed = finish - start;
+
+        System.out.println(name + " has done "  + timeElapsed);
 
     }
 }

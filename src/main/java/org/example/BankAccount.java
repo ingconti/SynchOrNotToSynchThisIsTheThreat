@@ -5,19 +5,34 @@ package org.example;
 
 // to sum up:
 // 1) USING synchronized ON METOHOS WILL LOCK ALL OBJECT
-// 2) it possible (nd BETTER) to lonk ONLY vars;
+// 2) it possible (nd BETTER) to lock ONLY vars BUT must be OBJECT, so can be worst for box unbox for primitive types.
+// 3) granual Access SEEMS NOT WORK!!!!
+
 
 public class BankAccount {
 
-    private int amount = 0;
+    private Integer amount = 0;
 
 
-    synchronized public void inc(int delta){
-        amount+=delta;
+    synchronized public void inc(){
+        amount+=1;
     }
 
-    synchronized public void dec(int delta){
-        amount-=delta;
+    synchronized public void dec(){
+        amount-=1;
+    }
+
+
+     public void granularInc(){
+         synchronized(amount) {
+             amount++;
+         }
+    }
+
+     public void granularDec(){
+         synchronized(amount) {
+             amount--;
+         }
     }
 
 
