@@ -1,22 +1,25 @@
 package org.example;
 
 
-import java.util.List;
-
 public class MyThread extends Thread {
+
+    public enum BuyAction {
+        BUY_ORANGES,
+        BUY_APPLE;
+    }
 
     private static final int maxIterations = 10000;
 
     private String name;
-    private boolean UP;
+    private BuyAction action;
     private boolean moreGranularAccess;
-    private BankAccount bankAccount;
+    private VegetableMarket market;
 
-    public MyThread(String  name, Boolean UP, Boolean moreGranularAccess,  BankAccount bankAccount) {
+    public MyThread(String name, BuyAction action, Boolean moreGranularAccess,  VegetableMarket market) {
         this.name = name;
-        this.UP = UP;
+        this.action = action;
         this.moreGranularAccess = moreGranularAccess;
-        this.bankAccount = bankAccount;
+        this.market = market;
     }
 
     public void run() {
@@ -26,24 +29,24 @@ public class MyThread extends Thread {
         long start = System.nanoTime();
 
         do {
-            if (UP){
+            if (action == BuyAction.BUY_APPLE) {
                 if (moreGranularAccess)
-                    bankAccount.granularInc();
+                    market.granularIncApples();
                 else
-                    bankAccount.inc();
-            }else{
+                    market.incApples();
+            } else {
                 if (moreGranularAccess)
-                    bankAccount.granularDec();
+                    market.granularIncOranges();
                 else
-                    bankAccount.dec();
+                    market.incOranges();
             }
 
-        } while (count++<maxIterations);
+        } while (++count < maxIterations);
 
         long finish = System.nanoTime();
         long timeElapsed = finish - start;
 
-        System.out.println(name + " has done "  + timeElapsed);
+        System.out.println(name + " has done " + timeElapsed);
 
     }
 }
