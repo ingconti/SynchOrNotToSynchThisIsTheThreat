@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MyThread extends Thread {
 
-    private static final int maxIterations = 2000;
+    private static final int maxIterations = 10000;
 
     private String name;
     private boolean UP;
