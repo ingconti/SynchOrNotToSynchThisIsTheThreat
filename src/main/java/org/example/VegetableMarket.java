@@ -4,9 +4,9 @@ package org.example;
 // https://stackoverflow.com/questions/3047564/java-synchronized-method-lock-on-object-or-method
 
 // to sum up:
-// 1) USING synchronized ON METOHOS WILL LOCK ALL OBJECT
-// 2) it possible (nd BETTER) to lock ONLY vars BUT must be OBJECT, so can be worst for box unbox for primitive types.
-// 3) granual Access SEEMS NOT WORK!!!!
+// 1) USING synchronized ON METHODS WILL LOCK ALL OBJECT
+// 2) it possible (and BETTER) to lock ONLY vars BUT must be OBJECT, so can be worst for box/unbox for primitive types.
+// 3) granular access SEEMS NOT WORK!!!!
 
 
 public class VegetableMarket {
@@ -44,6 +44,6 @@ public class VegetableMarket {
     }
 
     public void show() {
-        System.out.println("final amount: apples: " + apples + "  orsanges: " + oranges);
+        System.out.println("final amount: apples: " + apples + "  oranges: " + oranges);
     }
 }
